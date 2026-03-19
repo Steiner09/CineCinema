@@ -26,54 +26,47 @@
   }
   body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg3); color: var(--text); min-height: 100vh; }
   .page { max-width: 780px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
-
-  /* Header */
+  .loading-screen { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; gap: 16px; }
+  .spinner { width: 40px; height: 40px; border: 3px solid var(--border); border-top-color: var(--red); border-radius: 50%; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text { font-size: 14px; color: var(--text2); }
+  .error-banner { background: var(--red-light); border: 0.5px solid var(--red); border-radius: var(--radius-lg); padding: 1rem 1.25rem; margin-bottom: 1.25rem; font-size: 13px; color: var(--red-dark); display: none; }
   .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 12px; }
   .logo { display: flex; align-items: center; gap: 10px; }
   .logo-icon { width: 38px; height: 38px; background: var(--red); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 18px; }
   .logo-text { font-size: 20px; font-weight: 600; color: var(--text); }
   .logo-sub { font-size: 12px; color: var(--text2); margin-top: 1px; }
   .header-actions { display: flex; gap: 8px; align-items: center; }
-
-  /* GST Toggle */
+  .live-badge { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--green); background: var(--green-light); padding: 4px 10px; border-radius: 20px; font-weight: 500; }
+  .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
   .gst-toggle { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text2); background: var(--bg2); padding: 6px 11px; border-radius: var(--radius); border: 0.5px solid var(--border); cursor: pointer; user-select: none; }
   .dot { width: 26px; height: 15px; border-radius: 8px; background: #ccc; position: relative; transition: background 0.2s; flex-shrink: 0; }
   .dot.on { background: var(--red); }
   .dot::after { content: ''; width: 11px; height: 11px; border-radius: 50%; background: #fff; position: absolute; top: 2px; left: 2px; transition: left 0.2s; }
   .dot.on::after { left: 13px; }
-
-  /* Auth */
   .login-btn { font-size: 12px; padding: 6px 12px; border-radius: var(--radius); border: 0.5px solid var(--border); cursor: pointer; background: var(--bg); color: var(--text2); transition: all 0.15s; }
   .login-btn:hover { background: var(--bg2); }
   .login-btn.loggedin { background: var(--red); color: #fff; border-color: var(--red); }
   .user-greeting { font-size: 12px; color: var(--text2); padding: 5px 9px; background: var(--bg2); border-radius: var(--radius); border: 0.5px solid var(--border); }
-
-  /* Modal */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; align-items: center; justify-content: center; }
   .modal-overlay.open { display: flex; }
   .modal { background: var(--bg); border-radius: var(--radius-xl); border: 0.5px solid var(--border2); padding: 1.75rem; width: 340px; max-width: 92vw; }
   .modal h2 { font-size: 17px; font-weight: 600; margin-bottom: 1.25rem; color: var(--text); }
-  .modal input { width: 100%; padding: 9px 11px; border-radius: var(--radius); border: 0.5px solid var(--border2); font-size: 13px; margin-bottom: 10px; background: var(--bg); color: var(--text); font-family: inherit; outline: none; transition: border 0.15s; }
+  .modal input { width: 100%; padding: 9px 11px; border-radius: var(--radius); border: 0.5px solid var(--border2); font-size: 13px; margin-bottom: 10px; background: var(--bg); color: var(--text); font-family: inherit; outline: none; }
   .modal input:focus { border-color: var(--red); }
   .modal-btns { display: flex; gap: 8px; margin-top: 4px; }
   .btn-primary { flex: 1; padding: 9px; border-radius: var(--radius); background: var(--red); color: #fff; border: none; cursor: pointer; font-size: 13px; font-family: inherit; font-weight: 500; }
-  .btn-primary:hover { background: var(--red-dark); }
   .btn-sec { flex: 1; padding: 9px; border-radius: var(--radius); background: var(--bg2); color: var(--text2); border: 0.5px solid var(--border); cursor: pointer; font-size: 13px; font-family: inherit; }
-
-  /* Tabs */
   .tab-row { display: flex; gap: 7px; margin-bottom: 1.1rem; flex-wrap: wrap; }
   .tab { padding: 5px 15px; border-radius: 20px; font-size: 12px; border: 0.5px solid var(--border); cursor: pointer; color: var(--text2); background: var(--bg); transition: all 0.15s; }
   .tab:hover { background: var(--bg2); }
   .tab.active { background: var(--red); color: #fff; border-color: var(--red); }
-
-  /* Area filter */
   .filter-bar { display: flex; gap: 7px; margin-bottom: 1.1rem; flex-wrap: wrap; align-items: center; }
   .filter-label { font-size: 12px; color: var(--text2); }
   .area-chip { font-size: 11px; padding: 4px 11px; border-radius: 20px; border: 0.5px solid var(--border); cursor: pointer; background: var(--bg); color: var(--text2); transition: all 0.15s; }
   .area-chip:hover { background: var(--bg2); }
   .area-chip.active { background: var(--bg2); color: var(--text); border-color: var(--border2); font-weight: 500; }
-
-  /* Movie scroll */
   .movie-scroll { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 1.25rem; scrollbar-width: none; }
   .movie-scroll::-webkit-scrollbar { display: none; }
   .movie-card { min-width: 115px; border-radius: var(--radius-lg); border: 0.5px solid var(--border); padding: 10px; cursor: pointer; background: var(--bg); flex-shrink: 0; transition: all 0.15s; }
@@ -85,28 +78,20 @@
   .badge { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 10px; margin-top: 4px; font-weight: 500; }
   .badge.now { background: var(--green-light); color: var(--green); }
   .badge.soon { background: var(--amber-light); color: var(--amber); }
-
-  /* Stats */
   .stat-row { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; margin-bottom: 1.25rem; }
   .stat { background: var(--bg); border-radius: var(--radius); padding: 10px 12px; border: 0.5px solid var(--border); }
   .stat-label { font-size: 11px; color: var(--text2); margin-bottom: 4px; }
   .stat-val { font-size: 18px; font-weight: 600; color: var(--text); }
   .stat-sub { font-size: 10px; color: var(--text3); margin-top: 2px; }
-
-  /* Saved */
   .saved-section { margin-bottom: 1.25rem; padding: 10px 14px; background: var(--blue-light); border-radius: var(--radius-lg); border: 0.5px solid var(--blue-mid); }
   .saved-title { font-size: 12px; font-weight: 500; color: var(--blue); margin-bottom: 7px; }
   .saved-list { display: flex; gap: 6px; flex-wrap: wrap; }
   .saved-tag { font-size: 11px; padding: 3px 10px; border-radius: var(--radius); background: #fff; color: var(--blue); border: 0.5px solid var(--blue-mid); }
-
-  /* Sort */
   .sort-bar { display: flex; align-items: center; gap: 7px; margin-bottom: 10px; flex-wrap: wrap; }
   .sort-lbl { font-size: 12px; color: var(--text2); }
   .sort-btn { font-size: 11px; padding: 4px 10px; border-radius: var(--radius); border: 0.5px solid var(--border); cursor: pointer; background: var(--bg); color: var(--text2); transition: all 0.15s; }
   .sort-btn:hover { background: var(--bg2); }
   .sort-btn.active { background: var(--bg2); color: var(--text); border-color: var(--border2); font-weight: 500; }
-
-  /* Theatre cards */
   .theatre-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1rem 1.1rem; margin-bottom: 10px; transition: border-color 0.15s; }
   .theatre-card:hover { border-color: var(--border2); }
   .theatre-card.cheapest { border: 1.5px solid var(--green); }
@@ -116,56 +101,38 @@
   .th-chain { font-size: 11px; color: var(--text3); margin-top: 2px; }
   .th-addr { font-size: 11px; color: var(--text2); margin-top: 2px; }
   .th-actions { display: flex; gap: 6px; flex-shrink: 0; }
-  .map-btn, .save-btn { font-size: 11px; padding: 4px 10px; border-radius: var(--radius); border: 0.5px solid var(--border); cursor: pointer; background: var(--bg2); color: var(--text2); transition: all 0.15s; text-decoration: none; }
+  .map-btn, .save-btn { font-size: 11px; padding: 4px 10px; border-radius: var(--radius); border: 0.5px solid var(--border); cursor: pointer; background: var(--bg2); color: var(--text2); transition: all 0.15s; text-decoration: none; display: inline-block; }
   .map-btn:hover, .save-btn:hover { border-color: var(--border2); }
   .save-btn.saved { background: var(--blue-light); color: var(--blue); border-color: var(--blue-mid); }
-
-  /* Prices */
   .price-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; margin-top: 7px; }
   .price-cell { background: var(--bg2); border-radius: var(--radius); padding: 8px 10px; text-align: center; }
   .price-cat { font-size: 10px; color: var(--text2); margin-bottom: 3px; }
   .price-val { font-size: 16px; font-weight: 600; color: var(--text); }
   .price-val.lowest { color: var(--green); }
   .price-gst { font-size: 10px; color: var(--text3); margin-top: 2px; }
-
-  /* Availability */
   .avail-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 9px; padding-top: 9px; border-top: 0.5px solid var(--border); align-items: center; }
   .avail-label { font-size: 11px; color: var(--text2); }
   .seat-bar { flex: 1; min-width: 80px; height: 5px; border-radius: 3px; background: var(--border); overflow: hidden; }
-  .seat-fill { height: 100%; border-radius: 3px; transition: width 0.5s; }
+  .seat-fill { height: 100%; border-radius: 3px; }
   .seat-pct { font-size: 11px; font-weight: 600; }
   .avail-status { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 500; }
   .avail-good { background: var(--green-light); color: var(--green); }
   .avail-mid { background: var(--amber-light); color: var(--amber); }
   .avail-low { background: var(--red-light); color: var(--red-dark); }
-
-  /* Shows */
   .shows-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 9px; }
-  .show-chip { font-size: 11px; padding: 4px 10px; border-radius: var(--radius); background: var(--bg2); color: var(--text2); border: 0.5px solid var(--border); cursor: pointer; transition: all 0.15s; }
-  .show-chip:hover { background: var(--bg3); border-color: var(--border2); }
-
-  /* Badges */
+  .show-chip { font-size: 11px; padding: 4px 10px; border-radius: var(--radius); background: var(--bg2); color: var(--text2); border: 0.5px solid var(--border); }
   .badge-small { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 500; }
   .badge-best { background: var(--green-light); color: var(--green); }
   .badge-saved-sm { background: var(--blue-light); color: var(--blue); }
-
   .no-shows { font-size: 13px; color: var(--text3); padding: 2rem 0; text-align: center; }
-
-  /* Footer */
+  .last-updated { font-size: 11px; color: var(--text3); text-align: right; margin-bottom: 8px; }
   .footer { margin-top: 3rem; text-align: center; font-size: 11px; color: var(--text3); }
   .footer a { color: var(--red); text-decoration: none; }
-
-  @media (max-width: 520px) {
-    .stat-row { grid-template-columns: repeat(3, minmax(0,1fr)); }
-    .price-row { grid-template-columns: repeat(3, 1fr); }
-    .th-actions { flex-direction: column; }
-  }
 </style>
 </head>
 <body>
 <div class="page">
 
-  <!-- Login Modal -->
   <div class="modal-overlay" id="loginModal">
     <div class="modal">
       <h2>Sign in to CineCompare</h2>
@@ -179,16 +146,21 @@
     </div>
   </div>
 
-  <!-- Header -->
+  <div class="error-banner" id="errorBanner">
+    ⚠️ Could not load live data from your Google Sheet. Showing sample data instead.
+    Make sure your Google Sheet is set to "Anyone with the link can view" and your SheetDB link is correct.
+  </div>
+
   <div class="header">
     <div class="logo">
       <div class="logo-icon">🎬</div>
       <div>
         <div class="logo-text">CineCompare</div>
-        <div class="logo-sub">Delhi NCR &mdash; Movie price comparison</div>
+        <div class="logo-sub">Delhi NCR — Movie price comparison</div>
       </div>
     </div>
     <div class="header-actions">
+      <div class="live-badge"><div class="live-dot"></div> Live data</div>
       <div class="gst-toggle" onclick="toggleGst()">
         <div class="dot on" id="gstDot"></div>
         <span id="gstLabel">Inc. GST</span>
@@ -197,82 +169,153 @@
     </div>
   </div>
 
-  <!-- Tabs -->
-  <div class="tab-row">
-    <div class="tab active" onclick="setTab('all',this)">All Movies</div>
-    <div class="tab" onclick="setTab('now',this)">Now Showing</div>
-    <div class="tab" onclick="setTab('soon',this)">Upcoming</div>
-    <div class="tab" onclick="setTab('saved',this)">Saved Theatres</div>
+  <div class="loading-screen" id="loadingScreen">
+    <div class="spinner"></div>
+    <div class="loading-text">Loading live data from your Google Sheet...</div>
   </div>
 
-  <!-- Area Filter -->
-  <div class="filter-bar">
-    <span class="filter-label">Filter by area:</span>
-    <div id="areaFilters" style="display:flex;gap:7px;flex-wrap:wrap;"></div>
+  <div id="mainContent" style="display:none">
+    <div class="tab-row">
+      <div class="tab active" onclick="setTab('all',this)">All Movies</div>
+      <div class="tab" onclick="setTab('now',this)">Now Showing</div>
+      <div class="tab" onclick="setTab('soon',this)">Upcoming</div>
+      <div class="tab" onclick="setTab('saved',this)">Saved Theatres</div>
+    </div>
+    <div class="filter-bar">
+      <span class="filter-label">Filter by area:</span>
+      <div id="areaFilters" style="display:flex;gap:7px;flex-wrap:wrap;"></div>
+    </div>
+    <div class="movie-scroll" id="movieScroll"></div>
+    <div id="statsSection"></div>
+    <div id="savedSection"></div>
+    <div class="last-updated" id="lastUpdated"></div>
+    <div class="sort-bar">
+      <span class="sort-lbl">Sort by:</span>
+      <div class="sort-btn active" onclick="setSort('price',this)">Lowest price</div>
+      <div class="sort-btn" onclick="setSort('avail',this)">Most available</div>
+      <div class="sort-btn" onclick="setSort('name',this)">Theatre name</div>
+      <div class="sort-btn" onclick="setSort('area',this)">Area</div>
+    </div>
+    <div id="theatreList"></div>
   </div>
-
-  <!-- Movies -->
-  <div class="movie-scroll" id="movieScroll"></div>
-
-  <!-- Stats -->
-  <div id="statsSection"></div>
-
-  <!-- Saved section -->
-  <div id="savedSection"></div>
-
-  <!-- Sort -->
-  <div class="sort-bar">
-    <span class="sort-lbl">Sort by:</span>
-    <div class="sort-btn active" onclick="setSort('price',this)">Lowest price</div>
-    <div class="sort-btn" onclick="setSort('avail',this)">Most available</div>
-    <div class="sort-btn" onclick="setSort('name',this)">Theatre name</div>
-    <div class="sort-btn" onclick="setSort('area',this)">Area</div>
-  </div>
-
-  <!-- Theatre List -->
-  <div id="theatreList"></div>
 
   <div class="footer">
-    Built with &hearts; &mdash; Prototype v2.0 &mdash;
-    Prices are sample data. Connect <a href="https://apify.com" target="_blank">Apify</a> for live BookMyShow data.
-    &mdash; Host free on <a href="https://vercel.com" target="_blank">Vercel</a>
+    Built with &hearts; &mdash; Data updates live from Google Sheets via
+    <a href="https://sheetdb.io" target="_blank">SheetDB</a>
   </div>
-
 </div>
 
 <script>
+// ═══════════════════════════════════════════════
+// YOUR SHEETDB API LINK — only change this line!
+const SHEETDB_URL = "https://sheetdb.io/api/v1/hj49lrpb3ewki";
+// ═══════════════════════════════════════════════
+
 const GST = 0.18;
-
-const movies = [
-  {id:1, name:"Chhaava",          lang:"Hindi",     status:"now",  emoji:"⚔️", bg:"#FCEBEB"},
-  {id:2, name:"Sky Force",        lang:"Hindi",     status:"now",  emoji:"✈️", bg:"#E6F1FB"},
-  {id:3, name:"Captain America",  lang:"Eng/Hindi", status:"now",  emoji:"🛡️", bg:"#E1F5EE"},
-  {id:4, name:"Kesari Chapter 2", lang:"Hindi",     status:"soon", emoji:"🏰", bg:"#FAEEDA"},
-  {id:5, name:"Raid 2",           lang:"Hindi",     status:"soon", emoji:"🔍", bg:"#EEEDFE"},
-];
-
-const theatres = [
-  {id:1, name:"PVR Select Citywalk",    chain:"PVR",       area:"Saket",        addr:"Select Citywalk Mall, Saket, South Delhi",        maps:"https://maps.google.com/?q=PVR+Select+Citywalk+Saket+Delhi",   prices:{silver:220,gold:310,platinum:450}, shows:["10:30 AM","1:15 PM","4:30 PM","7:45 PM","10:55 PM"], avail:{silver:82,gold:61,platinum:40}},
-  {id:2, name:"INOX Nehru Place",       chain:"INOX",      area:"Nehru Place",  addr:"DLF Place Mall, Nehru Place, South Delhi",        maps:"https://maps.google.com/?q=INOX+Nehru+Place+Delhi",            prices:{silver:190,gold:280,platinum:390}, shows:["11:00 AM","2:00 PM","5:15 PM","8:30 PM"],             avail:{silver:95,gold:78,platinum:55}},
-  {id:3, name:"Cinepolis DLF Mall",     chain:"Cinepolis", area:"Noida",        addr:"DLF Mall of India, Sector 18, Noida",             maps:"https://maps.google.com/?q=Cinepolis+DLF+Mall+of+India+Noida", prices:{silver:200,gold:290,platinum:420}, shows:["10:00 AM","1:00 PM","4:00 PM","7:00 PM","10:15 PM"], avail:{silver:70,gold:50,platinum:30}},
-  {id:4, name:"PVR Pacific Mall",       chain:"PVR",       area:"West Delhi",   addr:"Pacific Mall, Tagore Garden, West Delhi",         maps:"https://maps.google.com/?q=PVR+Pacific+Mall+Tagore+Garden+Delhi", prices:{silver:210,gold:300,platinum:430}, shows:["12:00 PM","3:30 PM","6:45 PM","9:50 PM"],          avail:{silver:60,gold:45,platinum:90}},
-  {id:5, name:"INOX Rajouri Garden",    chain:"INOX",      area:"West Delhi",   addr:"R2K Mall, Rajouri Garden, West Delhi",            maps:"https://maps.google.com/?q=INOX+Rajouri+Garden+Delhi",         prices:{silver:180,gold:260,platinum:370}, shows:["11:30 AM","2:30 PM","5:45 PM","9:00 PM"],             avail:{silver:88,gold:72,platinum:65}},
-  {id:6, name:"PVR Ambience Gurgaon",   chain:"PVR",       area:"Gurgaon",      addr:"Ambience Mall, NH-8, Gurgaon",                   maps:"https://maps.google.com/?q=PVR+Ambience+Mall+Gurgaon",         prices:{silver:230,gold:330,platinum:490}, shows:["10:45 AM","1:45 PM","4:45 PM","7:45 PM","11:00 PM"], avail:{silver:40,gold:22,platinum:15}},
-  {id:7, name:"Cinepolis Faridabad",    chain:"Cinepolis", area:"Faridabad",    addr:"Crown Interiors Mall, Sector 28, Faridabad",      maps:"https://maps.google.com/?q=Cinepolis+Faridabad",               prices:{silver:170,gold:240,platinum:340}, shows:["11:15 AM","2:15 PM","5:30 PM","8:45 PM"],             avail:{silver:92,gold:85,platinum:70}},
-  {id:8, name:"PVR Connaught Place",    chain:"PVR",       area:"Central Delhi",addr:"Odeon Building, Connaught Place, New Delhi",      maps:"https://maps.google.com/?q=PVR+Connaught+Place+Delhi",         prices:{silver:200,gold:295,platinum:420}, shows:["10:15 AM","1:30 PM","4:50 PM","8:10 PM"],             avail:{silver:55,gold:38,platinum:20}},
-];
-
-const areas = ["All Areas", ...new Set(theatres.map(t => t.area))];
-let gstOn = true, selectedMovie = 1, currentTab = 'all', sortBy = 'price', selectedArea = 'All Areas';
+let theatres = [], movies = [], showtimes = [];
+let gstOn = true, selectedMovie = null, currentTab = 'all';
+let sortBy = 'price', selectedArea = 'All Areas';
 let user = null, savedTheatres = [];
 
 function p(base) { return gstOn ? Math.round(base * (1 + GST)) : base; }
 
-function toggleGst() {
-  gstOn = !gstOn;
-  document.getElementById('gstDot').className = 'dot' + (gstOn ? ' on' : '');
-  document.getElementById('gstLabel').textContent = gstOn ? 'Inc. GST' : 'Ex. GST';
-  renderStats(); renderTheatres();
+async function loadData() {
+  try {
+    const enc = encodeURIComponent;
+    const [tRes, mRes, sRes] = await Promise.all([
+      fetch(`${SHEETDB_URL}?sheet=${enc('\uD83C\uDFDB\uFE0F Theatres')}`),
+      fetch(`${SHEETDB_URL}?sheet=${enc('\uD83C\uDFAC Movies')}`),
+      fetch(`${SHEETDB_URL}?sheet=${enc('\uD83C\uDF9F\uFE0F Showtimes & Prices')}`)
+    ]);
+
+    const [tData, mData, sData] = await Promise.all([tRes.json(), mRes.json(), sRes.json()]);
+
+    theatres = (Array.isArray(tData) ? tData : [])
+      .filter(r => r["Active? (YES/NO)"] === "YES" && r["Theatre Name"])
+      .map(r => ({
+        id: r["Theatre ID"], name: r["Theatre Name"], chain: r["Chain"],
+        area: r["Area / Locality"], addr: r["Full Address"], maps: r["Google Maps Link"],
+      }));
+
+    movies = (Array.isArray(mData) ? mData : [])
+      .filter(r => r["Active?"] === "YES" && r["Movie Name"])
+      .map(r => ({
+        id: r["Movie ID"], name: r["Movie Name"], lang: r["Language"],
+        status: r["Status"] === "NOW SHOWING" ? "now" : "soon",
+        emoji: r["Emoji"] || "🎬", bg: r["Poster Color (hex)"] || "#F5F5F3",
+      }));
+
+    showtimes = (Array.isArray(sData) ? sData : [])
+      .filter(r => r["Theatre ID"] && r["Movie ID"])
+      .map(r => {
+        const toNum = (v) => {
+          const n = Number(v);
+          return isNaN(n) ? 0 : n;
+        };
+        const toAvail = (v) => {
+          const n = toNum(v);
+          return n <= 1 ? Math.round(n * 100) : Math.round(n);
+        };
+        return {
+          theatreId: r["Theatre ID"], movieId: r["Movie ID"],
+          silver: toNum(r["Silver Price (₹ ex-GST)"]),
+          gold:   toNum(r["Gold Price (₹ ex-GST)"]),
+          platinum: toNum(r["Platinum Price (₹ ex-GST)"]),
+          silverAvail: toAvail(r["Silver Avail %"]),
+          goldAvail:   toAvail(r["Gold Avail %"]),
+          platAvail:   toAvail(r["Platinum Avail %"]),
+          shows: [r["Show 1"],r["Show 2"],r["Show 3"],r["Show 4"],r["Show 5"]].filter(Boolean),
+          updated: r["Last Updated"],
+        };
+      });
+
+    if (!theatres.length || !movies.length) throw new Error("Empty");
+    selectedMovie = movies[0].id;
+    const lu = showtimes[0]?.updated;
+    if (lu) document.getElementById('lastUpdated').textContent = `Last updated: ${lu}`;
+
+  } catch(e) {
+    console.warn("SheetDB load failed, using fallback:", e);
+    document.getElementById('errorBanner').style.display = 'block';
+    loadFallback();
+  }
+  document.getElementById('loadingScreen').style.display = 'none';
+  document.getElementById('mainContent').style.display = 'block';
+  renderAll();
+}
+
+function loadFallback() {
+  movies = [
+    {id:"M001",name:"Chhaava",lang:"Hindi",status:"now",emoji:"⚔️",bg:"#FCEBEB"},
+    {id:"M002",name:"Sky Force",lang:"Hindi",status:"now",emoji:"✈️",bg:"#E6F1FB"},
+    {id:"M003",name:"Captain America",lang:"Eng/Hindi",status:"now",emoji:"🛡️",bg:"#E1F5EE"},
+    {id:"M004",name:"Kesari Chapter 2",lang:"Hindi",status:"soon",emoji:"🏰",bg:"#FAEEDA"},
+  ];
+  theatres = [
+    {id:"T001",name:"PVR Select Citywalk",chain:"PVR",area:"Saket",addr:"Select Citywalk Mall, Saket",maps:"https://maps.google.com/?q=PVR+Select+Citywalk+Saket"},
+    {id:"T002",name:"INOX Nehru Place",chain:"INOX",area:"Nehru Place",addr:"DLF Place Mall, Nehru Place",maps:"https://maps.google.com/?q=INOX+Nehru+Place+Delhi"},
+    {id:"T003",name:"Cinepolis DLF Mall",chain:"Cinepolis",area:"Noida",addr:"DLF Mall of India, Sector 18",maps:"https://maps.google.com/?q=Cinepolis+DLF+Mall+Noida"},
+    {id:"T004",name:"PVR Pacific Mall",chain:"PVR",area:"West Delhi",addr:"Pacific Mall, Tagore Garden",maps:"https://maps.google.com/?q=PVR+Pacific+Mall+Delhi"},
+    {id:"T005",name:"INOX Rajouri Garden",chain:"INOX",area:"West Delhi",addr:"R2K Mall, Rajouri Garden",maps:"https://maps.google.com/?q=INOX+Rajouri+Garden"},
+    {id:"T006",name:"PVR Ambience Gurgaon",chain:"PVR",area:"Gurgaon",addr:"Ambience Mall, NH-8, Gurgaon",maps:"https://maps.google.com/?q=PVR+Ambience+Mall+Gurgaon"},
+  ];
+  showtimes = [
+    {theatreId:"T001",movieId:"M001",silver:220,gold:310,platinum:450,silverAvail:82,goldAvail:61,platAvail:40,shows:["10:30 AM","1:15 PM","4:30 PM","7:45 PM"]},
+    {theatreId:"T002",movieId:"M001",silver:190,gold:280,platinum:390,silverAvail:95,goldAvail:78,platAvail:55,shows:["11:00 AM","2:00 PM","5:15 PM","8:30 PM"]},
+    {theatreId:"T003",movieId:"M001",silver:200,gold:290,platinum:420,silverAvail:70,goldAvail:50,platAvail:30,shows:["10:00 AM","1:00 PM","4:00 PM","7:00 PM"]},
+    {theatreId:"T004",movieId:"M001",silver:210,gold:300,platinum:430,silverAvail:60,goldAvail:45,platAvail:90,shows:["12:00 PM","3:30 PM","6:45 PM","9:50 PM"]},
+    {theatreId:"T005",movieId:"M001",silver:180,gold:260,platinum:370,silverAvail:88,goldAvail:72,platAvail:65,shows:["11:30 AM","2:30 PM","5:45 PM","9:00 PM"]},
+    {theatreId:"T006",movieId:"M001",silver:230,gold:330,platinum:490,silverAvail:40,goldAvail:22,platAvail:15,shows:["10:45 AM","1:45 PM","4:45 PM","7:45 PM"]},
+  ];
+  selectedMovie = "M001";
+}
+
+function getS(tId, mId) { return showtimes.find(s => s.theatreId === tId && s.movieId === mId); }
+function availColor(pct) { return pct > 60 ? '#3B6D11' : pct > 30 ? '#BA7517' : '#E24B4A'; }
+function availLabel(pct) {
+  if (pct > 60) return ['avail-good','Good availability'];
+  if (pct > 30) return ['avail-mid','Filling up'];
+  return ['avail-low','Almost full'];
 }
 
 function openModal() { document.getElementById('loginModal').classList.add('open'); }
@@ -280,31 +323,27 @@ function closeModal() { document.getElementById('loginModal').classList.remove('
 function doLogin() {
   const name = document.getElementById('nameInput').value.trim();
   if (!name) { alert('Please enter your name'); return; }
-  user = { name };
-  closeModal();
-  renderUserArea(); renderSaved();
+  user = { name }; closeModal(); renderUserArea(); renderSaved();
 }
 function doLogout() { user = null; savedTheatres = []; renderUserArea(); renderSaved(); renderTheatres(); }
-
-function renderUserArea() {
-  const el = document.getElementById('userArea');
-  if (user) {
-    el.innerHTML = `<div style="display:flex;gap:7px;align-items:center">
-      <span class="user-greeting">Hi, ${user.name} 👋</span>
-      <div class="login-btn loggedin" onclick="doLogout()">Sign out</div>
-    </div>`;
-  } else {
-    el.innerHTML = `<div class="login-btn" onclick="openModal()">Sign in to save</div>`;
-  }
-}
-
 function toggleSave(id) {
   if (!user) { openModal(); return; }
-  const idx = savedTheatres.indexOf(id);
-  if (idx > -1) savedTheatres.splice(idx, 1); else savedTheatres.push(id);
+  const i = savedTheatres.indexOf(id);
+  if (i > -1) savedTheatres.splice(i, 1); else savedTheatres.push(id);
   renderSaved(); renderTheatres();
 }
+function renderUserArea() {
+  document.getElementById('userArea').innerHTML = user
+    ? `<div style="display:flex;gap:7px;align-items:center"><span class="user-greeting">Hi, ${user.name} 👋</span><div class="login-btn loggedin" onclick="doLogout()">Sign out</div></div>`
+    : `<div class="login-btn" onclick="openModal()">Sign in to save</div>`;
+}
 
+function toggleGst() {
+  gstOn = !gstOn;
+  document.getElementById('gstDot').className = 'dot' + (gstOn ? ' on' : '');
+  document.getElementById('gstLabel').textContent = gstOn ? 'Inc. GST' : 'Ex. GST';
+  renderStats(); renderTheatres();
+}
 function setTab(tab, el) {
   currentTab = tab;
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -314,8 +353,7 @@ function setTab(tab, el) {
 function setSort(s, el) {
   sortBy = s;
   document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
-  el.classList.add('active');
-  renderTheatres();
+  el.classList.add('active'); renderTheatres();
 }
 function setArea(a) {
   selectedArea = a;
@@ -324,130 +362,111 @@ function setArea(a) {
 }
 function selectMovie(id) { selectedMovie = id; renderMovies(); renderStats(); renderTheatres(); }
 
+function renderAll() { renderUserArea(); renderAreas(); renderMovies(); renderStats(); renderSaved(); renderTheatres(); }
+
 function renderAreas() {
+  const areas = ["All Areas", ...[...new Set(theatres.map(t => t.area))]];
   document.getElementById('areaFilters').innerHTML = areas.map(a =>
-    `<span class="area-chip${a === 'All Areas' ? ' active' : ''}" data-area="${a}" onclick="setArea('${a}')">${a}</span>`
+    `<span class="area-chip${a==='All Areas'?' active':''}" data-area="${a}" onclick="setArea('${a}')">${a}</span>`
   ).join('');
 }
 
 function renderMovies() {
-  const f = movies.filter(m => currentTab === 'all' || currentTab === 'saved' || m.status === (currentTab === 'now' ? 'now' : 'soon'));
+  const f = movies.filter(m => currentTab==='all'||currentTab==='saved'||m.status===(currentTab==='now'?'now':'soon'));
   document.getElementById('movieScroll').innerHTML = f.map(m => `
-    <div class="movie-card${m.id === selectedMovie ? ' selected' : ''}" onclick="selectMovie(${m.id})">
+    <div class="movie-card${m.id===selectedMovie?' selected':''}" onclick="selectMovie('${m.id}')">
       <div class="movie-poster" style="background:${m.bg}">${m.emoji}</div>
       <div class="movie-name">${m.name}</div>
       <div class="movie-lang">${m.lang}</div>
-      <span class="badge ${m.status === 'now' ? 'now' : 'soon'}">${m.status === 'now' ? 'Now Showing' : 'Coming Soon'}</span>
+      <span class="badge ${m.status==='now'?'now':'soon'}">${m.status==='now'?'Now Showing':'Coming Soon'}</span>
     </div>`).join('');
-  if (f.length && !f.find(m => m.id === selectedMovie)) selectMovie(f[0].id);
+  if (f.length && !f.find(m => m.id===selectedMovie)) selectMovie(f[0].id);
 }
 
 function renderStats() {
-  const m = movies.find(m => m.id === selectedMovie);
-  if (!m || m.status === 'soon') { document.getElementById('statsSection').innerHTML = ''; return; }
-  let list = theatres.filter(t => selectedArea === 'All Areas' || t.area === selectedArea);
-  if (!list.length) { document.getElementById('statsSection').innerHTML = ''; return; }
-  const prices = list.map(t => p(t.prices.gold));
-  const min = Math.min(...prices), max = Math.max(...prices), avg = Math.round(prices.reduce((a,b) => a+b, 0) / prices.length);
+  const m = movies.find(m => m.id===selectedMovie);
+  if (!m || m.status==='soon') { document.getElementById('statsSection').innerHTML=''; return; }
+  const list = theatres.filter(t => selectedArea==='All Areas'||t.area===selectedArea);
+  const prices = list.map(t => { const s=getS(t.id,selectedMovie); return s?p(s.gold):null; }).filter(Boolean);
+  if (!prices.length) { document.getElementById('statsSection').innerHTML=''; return; }
+  const min=Math.min(...prices), max=Math.max(...prices), avg=Math.round(prices.reduce((a,b)=>a+b,0)/prices.length);
   document.getElementById('statsSection').innerHTML = `
     <div class="stat-row">
-      <div class="stat"><div class="stat-label">Cheapest (Gold)</div><div class="stat-val">₹${min}</div><div class="stat-sub">${gstOn ? 'incl. GST' : 'excl. GST'}</div></div>
+      <div class="stat"><div class="stat-label">Cheapest (Gold)</div><div class="stat-val">₹${min}</div><div class="stat-sub">${gstOn?'incl. GST':'excl. GST'}</div></div>
       <div class="stat"><div class="stat-label">Average (Gold)</div><div class="stat-val">₹${avg}</div><div class="stat-sub">${list.length} theatres</div></div>
-      <div class="stat"><div class="stat-label">Max savings</div><div class="stat-val">₹${max - min}</div><div class="stat-sub">vs priciest</div></div>
+      <div class="stat"><div class="stat-label">Max savings</div><div class="stat-val">₹${max-min}</div><div class="stat-sub">vs priciest</div></div>
     </div>`;
 }
 
 function renderSaved() {
   const el = document.getElementById('savedSection');
-  if (!user || !savedTheatres.length) { el.innerHTML = ''; return; }
-  const names = savedTheatres.map(id => theatres.find(t => t.id === id)?.name).filter(Boolean);
-  el.innerHTML = `<div class="saved-section">
-    <div class="saved-title">📌 Your saved theatres</div>
-    <div class="saved-list">${names.map(n => `<span class="saved-tag">${n}</span>`).join('')}</div>
-  </div>`;
-}
-
-function availColor(pct) { return pct > 60 ? '#3B6D11' : pct > 30 ? '#BA7517' : '#E24B4A'; }
-function availLabel(pct) {
-  if (pct > 60) return ['avail-good', 'Good availability'];
-  if (pct > 30) return ['avail-mid', 'Filling up'];
-  return ['avail-low', 'Almost full'];
+  if (!user||!savedTheatres.length) { el.innerHTML=''; return; }
+  const names = savedTheatres.map(id=>theatres.find(t=>t.id===id)?.name).filter(Boolean);
+  el.innerHTML = `<div class="saved-section"><div class="saved-title">📌 Your saved theatres</div><div class="saved-list">${names.map(n=>`<span class="saved-tag">${n}</span>`).join('')}</div></div>`;
 }
 
 function renderTheatres() {
-  const m = movies.find(m => m.id === selectedMovie);
+  const m = movies.find(m=>m.id===selectedMovie);
   const el = document.getElementById('theatreList');
-  if (!m || m.status === 'soon') {
-    el.innerHTML = `<div class="no-shows">🎬 Showtimes not yet announced — check back closer to the release date!</div>`;
-    return;
-  }
-  let list = [...theatres].filter(t => selectedArea === 'All Areas' || t.area === selectedArea);
-  if (currentTab === 'saved') list = list.filter(t => savedTheatres.includes(t.id));
-  if (!list.length) {
-    el.innerHTML = `<div class="no-shows">${currentTab === 'saved' ? '💙 Sign in and save your favourite theatres to see them here!' : 'No theatres found for this area.'}</div>`;
-    return;
-  }
-  const minGold = Math.min(...list.map(t => p(t.prices.gold)));
-  const minSilver = Math.min(...list.map(t => p(t.prices.silver)));
-  if (sortBy === 'price') list.sort((a,b) => p(a.prices.gold) - p(b.prices.gold));
-  else if (sortBy === 'avail') list.sort((a,b) => b.avail.gold - a.avail.gold);
-  else if (sortBy === 'name') list.sort((a,b) => a.name.localeCompare(b.name));
-  else list.sort((a,b) => a.area.localeCompare(b.area));
-
+  if (!m||m.status==='soon') { el.innerHTML=`<div class="no-shows">🎬 Showtimes not yet announced!</div>`; return; }
+  let list = theatres.filter(t=>{ const s=getS(t.id,selectedMovie); return s&&(selectedArea==='All Areas'||t.area===selectedArea); });
+  if (currentTab==='saved') list=list.filter(t=>savedTheatres.includes(t.id));
+  if (!list.length) { el.innerHTML=`<div class="no-shows">${currentTab==='saved'?'💙 Save your favourite theatres here!':'No data yet — fill in your Google Sheet!'}</div>`; return; }
+  const minGold=Math.min(...list.map(t=>{const s=getS(t.id,selectedMovie);return s?p(s.gold):Infinity;}));
+  const minSilver=Math.min(...list.map(t=>{const s=getS(t.id,selectedMovie);return s?p(s.silver):Infinity;}));
+  if (sortBy==='price') list.sort((a,b)=>{const sa=getS(a.id,selectedMovie),sb=getS(b.id,selectedMovie);return p(sa?.gold||0)-p(sb?.gold||0);});
+  else if (sortBy==='avail') list.sort((a,b)=>{const sa=getS(a.id,selectedMovie),sb=getS(b.id,selectedMovie);return (sb?.goldAvail||0)-(sa?.goldAvail||0);});
+  else if (sortBy==='name') list.sort((a,b)=>a.name.localeCompare(b.name));
+  else list.sort((a,b)=>a.area.localeCompare(b.area));
   el.innerHTML = list.map(t => {
-    const isBest = p(t.prices.gold) === minGold;
-    const isSaved = savedTheatres.includes(t.id);
-    const [aClass, aText] = availLabel(t.avail.gold);
+    const s=getS(t.id,selectedMovie); if(!s) return '';
+    const isBest=p(s.gold)===minGold, isSaved=savedTheatres.includes(t.id);
+    const [aClass,aText]=availLabel(s.goldAvail);
     return `
-    <div class="theatre-card ${isBest ? 'cheapest' : isSaved ? 'is-saved-card' : ''}">
+    <div class="theatre-card ${isBest?'cheapest':isSaved?'is-saved-card':''}">
       <div class="th-top">
         <div>
           <div class="th-name">${t.name}
-            ${isBest ? '<span class="badge-small badge-best">Best value</span>' : ''}
-            ${isSaved ? '<span class="badge-small badge-saved-sm">Saved</span>' : ''}
+            ${isBest?'<span class="badge-small badge-best">Best value</span>':''}
+            ${isSaved?'<span class="badge-small badge-saved-sm">Saved</span>':''}
           </div>
           <div class="th-chain">${t.chain} &middot; ${t.area}</div>
           <div class="th-addr">${t.addr}</div>
         </div>
         <div class="th-actions">
-          <div class="save-btn${isSaved ? ' saved' : ''}" onclick="toggleSave(${t.id})">${isSaved ? '✓ Saved' : 'Save'}</div>
+          <div class="save-btn${isSaved?' saved':''}" onclick="toggleSave('${t.id}')">${isSaved?'✓ Saved':'Save'}</div>
           <a href="${t.maps}" class="map-btn" target="_blank">📍 Map</a>
         </div>
       </div>
       <div class="price-row">
         <div class="price-cell">
           <div class="price-cat">Silver</div>
-          <div class="price-val${p(t.prices.silver) === minSilver ? ' lowest' : ''}">₹${p(t.prices.silver)}</div>
-          ${gstOn ? `<div class="price-gst">Ex. GST ₹${t.prices.silver}</div>` : `<div class="price-gst">+18% GST → ₹${Math.round(t.prices.silver * 1.18)}</div>`}
+          <div class="price-val${p(s.silver)===minSilver?' lowest':''}">₹${p(s.silver)}</div>
+          ${gstOn?`<div class="price-gst">Ex. GST ₹${s.silver}</div>`:`<div class="price-gst">+GST → ₹${Math.round(s.silver*1.18)}</div>`}
         </div>
         <div class="price-cell">
           <div class="price-cat">Gold</div>
-          <div class="price-val${p(t.prices.gold) === minGold ? ' lowest' : ''}">₹${p(t.prices.gold)}</div>
-          ${gstOn ? `<div class="price-gst">Ex. GST ₹${t.prices.gold}</div>` : `<div class="price-gst">+18% GST → ₹${Math.round(t.prices.gold * 1.18)}</div>`}
+          <div class="price-val${p(s.gold)===minGold?' lowest':''}">₹${p(s.gold)}</div>
+          ${gstOn?`<div class="price-gst">Ex. GST ₹${s.gold}</div>`:`<div class="price-gst">+GST → ₹${Math.round(s.gold*1.18)}</div>`}
         </div>
         <div class="price-cell">
           <div class="price-cat">Platinum</div>
-          <div class="price-val">₹${p(t.prices.platinum)}</div>
-          ${gstOn ? `<div class="price-gst">Ex. GST ₹${t.prices.platinum}</div>` : `<div class="price-gst">+18% GST → ₹${Math.round(t.prices.platinum * 1.18)}</div>`}
+          <div class="price-val">₹${p(s.platinum)}</div>
+          ${gstOn?`<div class="price-gst">Ex. GST ₹${s.platinum}</div>`:`<div class="price-gst">+GST → ₹${Math.round(s.platinum*1.18)}</div>`}
         </div>
       </div>
       <div class="avail-row">
         <span class="avail-label">Gold seats:</span>
-        <div class="seat-bar"><div class="seat-fill" style="width:${t.avail.gold}%;background:${availColor(t.avail.gold)}"></div></div>
-        <span class="seat-pct" style="color:${availColor(t.avail.gold)}">${t.avail.gold}%</span>
+        <div class="seat-bar"><div class="seat-fill" style="width:${s.goldAvail}%;background:${availColor(s.goldAvail)}"></div></div>
+        <span class="seat-pct" style="color:${availColor(s.goldAvail)}">${s.goldAvail}%</span>
         <span class="avail-status ${aClass}">${aText}</span>
       </div>
-      <div class="shows-row">${t.shows.map(s => `<div class="show-chip">${s}</div>`).join('')}</div>
+      <div class="shows-row">${s.shows.map(sh=>`<div class="show-chip">${sh}</div>`).join('')}</div>
     </div>`;
   }).join('');
 }
 
-renderAreas();
-renderMovies();
-renderStats();
-renderSaved();
-renderTheatres();
-renderUserArea();
+loadData();
 </script>
 </body>
 </html>
